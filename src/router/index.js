@@ -11,6 +11,21 @@ const routes = [
     component: Home
   },
   {
+    path: '/dolar',
+    name: 'Dolar',
+    component: () => import(/* webpackChunkName: "dolar" */ '../views/Dolar.vue')
+  },
+  {
+    path: '/uf',
+    name: 'UF',
+    component: () => import(/* webpackChunkName: "uf" */ '../views/UF.vue')
+  },
+  {
+    path: '/bitcoin',
+    name: 'Bitcoin',
+    component: () => import(/* webpackChunkName: "bitcoin" */ '../views/Bitcoin.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
