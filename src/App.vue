@@ -6,6 +6,11 @@
       <router-link to="/dolar">Dolar</router-link> |
       <router-link to="/uf">UF</router-link>
       <!-- <div>{{ logout }}</div> -->
+       <!-- <span class="mdiLogout">{{logout}}</span>
+       <span class="mdi mdi-alert-circle-check-outline"> </span>
+       <span class="mdi mdi-alert-circle-check-outline"></span> -->
+       <i class="mdi mdi-alert-circle-check-outline" aria-hidden="true"></i>
+       
 
     </div>
     <router-view/>

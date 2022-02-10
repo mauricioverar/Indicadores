@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div
       id="chartContainer"
       style="height: 370px; max-width: 920px; margin: 0px auto"

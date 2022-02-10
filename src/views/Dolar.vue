@@ -1,5 +1,14 @@
 <template>
   <div>
+    <!-- <loading v-model:active="isLoading"
+                 :can-cancel="true"
+                 :on-cancel="onCancel"
+                 :is-full-page="fullPage"/> -->
+    <!-- <loading
+           :active.sync="isLoading"
+           :can-cancel="false"
+           :is-full-page=true
+       /> -->
     <div
       id="chartContainer"
       style="height: 370px; max-width: 920px; margin: 0px auto"
@@ -8,15 +17,21 @@
 </template>
 
 <script>
+// import Loading from 'vue-loading-overlay'
+// import 'vue-loading-overlay/dist/vue-loading.css'
 import axios from 'axios'
 
 export default {
   name: 'Dolar',
-  components: {},
+  components: {
+    // Loading
+  },
 
   data: () => ({
     dolar: [],
-    lafecha: []
+    lafecha: [],
+
+    isLoading: true
   }),
 
   created() {
@@ -36,6 +51,8 @@ export default {
           'https://mindicador.cl/api/dolar'
         )
         this.dolar = await datos.serie
+
+        this.isLoading=false
 
         var dataPoints = []
         let chart = new CanvasJS.Chart('chartContainer', {
