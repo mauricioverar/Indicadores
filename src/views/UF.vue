@@ -1,34 +1,54 @@
 <template>
   <div>
-
+    <!-- usar imagen abajo zindex -->
+    
+    <div v-if="loder">
+      <div class="text-center">
+        <!-- <v-icon
+      large
+      color="green darken-2"
+    >
+      mdi-currency-usd 
+    </v-icon> -->
+    <span><b> UF </b></span>
+        <v-progress-circular
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </div>
+    </div>
     <div
       id="chartContainer"
       style="height: 370px; max-width: 920px; margin: 0px auto"
     ></div>
+    <div>
+      <Tabla :datos="ufs" />
+    </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
 import { mapState } from 'vuex'
-
+import Tabla from '@/components/Tabla'
 
 export default {
   name: 'UF',
-  components: {},
+  components: { Tabla },
 
   data: () => ({
+    loder: true
   }),
 
   created() {
-    
+    //this.loder = true
+
     //this.get_Datos()
     // console.log('created')
   },
 
   computed: {
-      ...mapState(['ufs']),
-    },
+    ...mapState(['ufs'])
+  },
 
   mounted() {
     this.grafico()
@@ -38,7 +58,9 @@ export default {
 
   methods: {
     grafico() {
-      var dataPoints = []
+      let loder = true
+      setTimeout(() => {
+        var dataPoints = []
         let chart = new CanvasJS.Chart('chartContainer', {
           theme: 'light2',
           animationEnabled: false,
@@ -58,7 +80,10 @@ export default {
             y: this.ufs[i].valor
           })
         }
+        this.loder = false
+
         chart.render()
+      }, 500)
     }
     // async get_Datos() {
     //   try {

@@ -1,18 +1,30 @@
 <template>
   <div>
-    <!-- <loading v-model:active="isLoading"
-                 :can-cancel="true"
-                 :on-cancel="onCancel"
-                 :is-full-page="fullPage"/> -->
-    <!-- <loading
-           :active.sync="isLoading"
-           :can-cancel="false"
-           :is-full-page=true
-       /> -->
+    <!-- usar imagen abajo zindex -->
+    <div v-if="loder">
+      <div class="text-center">
+      <!-- <img src="@/assets/dolar.png" alt="dolar"> -->
+      <v-icon
+      large
+      color="green darken-2"
+    >
+      mdi-currency-usd 
+    </v-icon>
+
+        <v-progress-circular
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </div>
+    </div>
+
     <div
       id="chartContainer"
       style="height: 370px; max-width: 920px; margin: 0px auto"
     ></div>
+    <div>
+      <Tabla :datos="dolars" />
+    </div>
   </div>
 </template>
 
@@ -21,25 +33,25 @@
 // import 'vue-loading-overlay/dist/vue-loading.css'
 // import axios from 'axios'
 import { mapState } from 'vuex'
-
+import Tabla from '@/components/Tabla'
 
 export default {
   name: 'Dolar',
   components: {
-    // Loading
+    Tabla
   },
 
   data: () => ({
-
-    // isLoading: true
+    loder: true
   }),
 
   created() {
+    //this.loder = true
   },
 
   computed: {
-      ...mapState(['dolars']),
-    },
+    ...mapState(['dolars'])
+  },
 
   mounted() {
     this.grafico()
@@ -47,7 +59,9 @@ export default {
 
   methods: {
     grafico() {
-      var dataPoints = []
+      let loder = true
+      setTimeout(() => {
+        var dataPoints = []
         let chart = new CanvasJS.Chart('chartContainer', {
           theme: 'light2',
           animationEnabled: false,
@@ -67,7 +81,10 @@ export default {
             y: this.dolars[i].valor
           })
         }
+        this.loder = false
+
         chart.render()
+      }, 500)
     }
   }
 }

@@ -97,14 +97,8 @@ svg {
 }
 @keyframes girar {
     0% {
-      /* transition-timing-function: ease-in; */
       transform: rotate(0deg);
     }
-    /* 50% {
-      transition-duration: 2s;
-      transition-timing-function: ease-in;
-      transform: rotate(0);
-    } */
     100% {
       transform: rotate(360deg);
     }

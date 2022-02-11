@@ -1,7 +1,7 @@
 <template>
 <div>
   
-  <hello-world />
+  <Celular />
   <!-- <div>
       <button @click="muestra">muestra</button>
     </div> -->
@@ -11,13 +11,13 @@
 <script>
 // import {  mapState } from 'vuex'
 
-  import HelloWorld from '../components/HelloWorld'
+  import Celular from '../components/Celular'
 
   export default {
     name: 'Home',
 
     components: {
-      HelloWorld,
+      Celular,
     },
 
     // computed: {
