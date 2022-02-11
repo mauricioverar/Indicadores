@@ -1,4 +1,3 @@
-// import { get } from 'core-js/core/dict'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
@@ -6,12 +5,9 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  // mounted() {https://mindicador.cl/api
-  //   this.get_Datos()
-  // },
   state: {
     ufs: [],
-    datos: [],
+    bitcoins: [],
     dolars: []
 
   },
@@ -22,6 +18,10 @@ export default new Vuex.Store({
 
     GET_DOLAR(state, dolar) {
       state.dolars = dolar
+    },
+
+    GET_BITCOIN(state, bitcoin) {
+      state.bitcoins = bitcoin
     }
   },
   actions: {
@@ -45,8 +45,19 @@ export default new Vuex.Store({
       } catch (error) {
         // console.log(error)
       }
+    },
+    async get_DatBitcoin({ commit }) {
+      try {
+        const {data: datos} = await axios.get('https://mindicador.cl/api/bitcoin')
+        this.bitcoin = await datos.serie
+        // console.log('datos bitcoin.serie: ', this.bitcoin)
+        commit('GET_BITCOIN', this.bitcoin)
+      } catch (error) {
+        // console.log(error)
+      }
     }
   },
   modules: {
-  }
+  },
+
 })

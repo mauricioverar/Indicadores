@@ -1,18 +1,33 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+  
+  <hello-world />
+  <!-- <div>
+      <button @click="muestra">muestra</button>
+    </div> -->
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import {  mapState } from 'vuex'
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  import HelloWorld from '../components/HelloWorld'
+
+  export default {
+    name: 'Home',
+
+    components: {
+      HelloWorld,
+    },
+
+    // computed: {
+    //   ...mapState(['ufs']),
+    // },
+
+    methods: {
+    //   muestra () {
+    // console.log('carrito ', this.ufs)
+    // }
+    }
   }
-}
 </script>

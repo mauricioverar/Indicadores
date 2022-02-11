@@ -19,7 +19,9 @@
 <script>
 // import Loading from 'vue-loading-overlay'
 // import 'vue-loading-overlay/dist/vue-loading.css'
-import axios from 'axios'
+// import axios from 'axios'
+import { mapState } from 'vuex'
+
 
 export default {
   name: 'Dolar',
@@ -28,33 +30,24 @@ export default {
   },
 
   data: () => ({
-    dolar: [],
-    lafecha: [],
 
-    isLoading: true
+    // isLoading: true
   }),
 
   created() {
-    this.get_Datos()
-    // console.log('created')
   },
 
+  computed: {
+      ...mapState(['dolars']),
+    },
+
   mounted() {
-    // this.get_Datos()
-    // console.log('mounted')
+    this.grafico()
   },
 
   methods: {
-    async get_Datos() {
-      try {
-        const { data: datos } = await axios.get(
-          'https://mindicador.cl/api/dolar'
-        )
-        this.dolar = await datos.serie
-
-        this.isLoading=false
-
-        var dataPoints = []
+    grafico() {
+      var dataPoints = []
         let chart = new CanvasJS.Chart('chartContainer', {
           theme: 'light2',
           animationEnabled: false,
@@ -68,16 +61,13 @@ export default {
             }
           ]
         })
-        for (var i = 0; i < this.dolar.length; i++) {
+        for (var i = 0; i < this.dolars.length; i++) {
           dataPoints.push({
-            x: new Date(this.dolar[i].fecha),
-            y: this.dolar[i].valor
+            x: new Date(this.dolars[i].fecha),
+            y: this.dolars[i].valor
           })
         }
         chart.render()
-      } catch (error) {
-        console.log(error)
-      }
     }
   }
 }

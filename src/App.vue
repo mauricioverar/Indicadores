@@ -1,44 +1,86 @@
 <template>
-<div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/bitcoin">Bitcoin</router-link> |
-      <router-link to="/dolar">Dolar</router-link> |
-      <router-link to="/uf">UF</router-link>
-      <!-- <div>{{ logout }}</div> -->
-       <!-- <span class="mdiLogout">{{logout}}</span>
-       <span class="mdi mdi-alert-circle-check-outline"> </span>
-       <span class="mdi mdi-alert-circle-check-outline"></span> -->
-       <i class="mdi mdi-alert-circle-check-outline" aria-hidden="true"></i>
-       
+<div>
+  
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <v-btn to="/" text>
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+        <v-btn to="/uf" text>
+          <span>UF</span>
+        </v-btn>
+        <v-btn to="/dolar" text>
+          <span>Dolar</span>
+        </v-btn>
+        <v-btn to="/bitcoin" text>
+          <span>Bitcoin</span>
+        </v-btn>
+      </div>
 
+      <v-spacer></v-spacer>
+
+      <!-- <v-btn to="/" text>
+        <v-icon>mdi-logout</v-icon>
+      </v-btn> -->
+    </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
+  <div>
+      <button @click="muestra">muestra</button>
     </div>
-    <router-view/>
-  </div>
+</div>
 </template>
 
 <script>
-
-import { mapActions } from 'vuex'
-import { mdiLogout } from '@mdi/js'
-
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'App',
-  components: {
-  },
+  // props: ["uf"],
 
   data: () => ({
-    logout: mdiLogout,
   }),
 
-  methods: {
-    ...mapActions(['get_Datos', 'get_DatDolar'])
+  created() {
+    this.get_Datos()
+    this.get_DatDolar()
+    this.get_DatBitcoin()
   },
 
+  computed: {
+      ...mapState(['ufs', 'dolars', 'bitcoins']),
+    },
+
+  
+   methods: {
+    // ...mapState(['ufs']), // definido como props
+    ...mapActions(['get_Datos', 'get_DatDolar', 'get_DatBitcoin']),
+
+    muestra () {
+    console.log('carrito ', this.dolars)
+    }
+
+  },
+
+  mounted() {
+    // this.get_Datos()
+
+    // console.log('datos uf.serie: ', this.ufs)
+  },
+
+  updated() {
+    // console.log('datos uf.serie: ', this.ufs)
+  }
+
+  /*
   mounted() {
     this.get_Datos()
     this.get_DatDolar()
   }
+  */
 }
 </script>

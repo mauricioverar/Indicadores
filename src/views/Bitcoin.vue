@@ -8,36 +8,27 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Bitcoin',
   components: {},
 
   data: () => ({
-    bitcoin: [],
-    lafecha: []
+    bitcoin: []
   }),
 
-  created() {
-    this.get_Datos()
-    // console.log('created')
-  },
+  computed: {
+      ...mapState(['bitcoins']),
+    },
 
   mounted() {
-    // this.get_Datos()
-    // console.log('mounted')
+    this.grafico()
   },
 
   methods: {
-    async get_Datos() {
-      try {
-        const { data: datos } = await axios.get(
-          'https://mindicador.cl/api/bitcoin'
-        )
-        this.bitcoin = await datos.serie
-
-        var dataPoints = []
+    grafico() {
+      var dataPoints = []
         let chart = new CanvasJS.Chart('chartContainer', {
           theme: 'light2',
           animationEnabled: false,
@@ -51,16 +42,13 @@ export default {
             }
           ]
         })
-        for (var i = 0; i < this.bitcoin.length; i++) {
+        for (var i = 0; i < this.bitcoins.length; i++) {
           dataPoints.push({
-            x: new Date(this.bitcoin[i].fecha),
-            y: this.bitcoin[i].valor
+            x: new Date(this.bitcoins[i].fecha),
+            y: this.bitcoins[i].valor
           })
         }
         chart.render()
-      } catch (error) {
-        console.log(error)
-      }
     }
   }
 }

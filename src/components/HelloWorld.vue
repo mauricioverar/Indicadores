@@ -1,8 +1,9 @@
 <template>
-  <div class="hello">
+  <v-container>
     <p>Indicadores económicos</p>
 
-    <svg viewBox="-2 0 511 512" xmlns="http://www.w3.org/2000/svg">
+    <div class="cel">
+      <svg viewBox="-2 0 511 512" xmlns="http://www.w3.org/2000/svg">
       <g class="celular">
         <path
           d="m415.433594 460.488281h-257.460938c-13.511718 0-24.460937-10.949219-24.460937-24.460937v-404.066406c0-13.507813 10.949219-24.460938 24.460937-24.460938h257.460938c13.507812 0 24.460937 10.953125 24.460937 24.460938v404.066406c0 13.511718-10.953125 24.460937-24.460937 24.460937zm0 0"
@@ -48,6 +49,7 @@
           d="m294.203125 299.164062v-160.035156c0-17.546875-14.277344-31.820312-31.820313-31.820312h-230.0625c-17.546874 0-31.820312 14.273437-31.820312 31.820312v160.035156c0 17.546876 14.273438 31.820313 31.820312 31.820313h230.0625c17.542969 0 31.820313-14.273437 31.820313-31.820313zm-278.703125 0v-160.035156c0-9.273437 7.546875-16.820312 16.820312-16.820312h230.0625c9.273438 0 16.820313 7.546875 16.820313 16.820312v160.035156c0 9.273438-7.546875 16.820313-16.820313 16.820313h-230.0625c-9.273437 0-16.820312-7.546875-16.820312-16.820313zm0 0"
         />
         <path
+        class="rueda"
           d="m403.539062 368.054688c-21.527343 0-39.042968 17.511718-39.042968 39.039062 0 .558594.011718 1.113281.035156 1.664062-.019531.242188-.035156.484376-.035156.734376 0 .636718.082031 1.257812.230468 1.847656 2.125 19.539062 18.71875 34.796875 38.8125 34.796875 21.527344 0 39.039063-17.515625 39.039063-39.042969s-17.511719-39.039062-39.039063-39.039062zm0 15c11.503907 0 21.148438 8.125 23.496094 18.9375h-46.992187c2.347656-10.816407 11.988281-18.9375 23.496093-18.9375zm0 48.082031c-9.730468 0-18.128906-5.8125-21.910156-14.148438h43.816406c-3.777343 8.335938-12.175781 14.148438-21.90625 14.148438zm0 0"
         />
         <path
@@ -55,20 +57,23 @@
         />
       </g>
     </svg>
-  </div>
+    </div>
+  </v-container>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  export default {
+    name: 'HelloWorld',
+
+    data: () => ({
+    }),
   }
-}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.cel {
+  width: 40%;
+}
 svg {
   margin-left: 8px;
   margin-bottom: 30px;
@@ -87,28 +92,24 @@ svg {
 }
 .rueda {
   animation: girar 2s;
-  transform-origin: 80% 80%;
+  transform-origin: 79% 79.5%;
   animation-iteration-count: infinite;
 }
-.cel {
-  width: 40%;
-
-  @keyframes girar {
+@keyframes girar {
     0% {
-      //transition-timing-function: ease-in;
-      //transform: rotate(45);
+      /* transition-timing-function: ease-in; */
+      transform: rotate(0deg);
     }
-    50% {
-      //transition-duration: 2s;
-      //transition-timing-function: ease-in;
+    /* 50% {
+      transition-duration: 2s;
+      transition-timing-function: ease-in;
       transform: rotate(0);
-    }
+    } */
     100% {
-      transform: rotate(45deg);
+      transform: rotate(360deg);
     }
   }
-
-  @keyframes mover {
+@keyframes mover {
     0% {
       margin-left: 0;
     }
@@ -118,7 +119,6 @@ svg {
       transform: translateX(100px);
     }
   }
-}
 @media (max-width: 757px) {
   .cel {
     width: 80%;
