@@ -7,12 +7,15 @@
         <v-btn to="/" text>
           <v-icon>mdi-home</v-icon>
         </v-btn>
+
         <v-btn to="/uf" text>
           <span>UF</span>
         </v-btn>
+
         <v-btn to="/dolar" text>
           <span>Dolar</span>
         </v-btn>
+        
         <v-btn to="/bitcoin" text>
           <span>Bitcoin</span>
         </v-btn>

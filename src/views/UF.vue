@@ -83,7 +83,7 @@ export default {
         this.loder = false
 
         chart.render()
-      }, 500)
+      }, 1000)
     }
     // async get_Datos() {
     //   try {

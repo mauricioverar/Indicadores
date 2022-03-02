@@ -84,7 +84,7 @@ export default {
         this.loder = false
 
         chart.render()
-      }, 500)
+      }, 1000)
     }
   }
 }
