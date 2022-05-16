@@ -29,7 +29,7 @@ export default new Vuex.Store({
       try {
         const {data: datos} = await axios.get('https://mindicador.cl/api/uf')
         this.uf = await datos.serie
-        // console.log('datos uf.serie: ', this.uf)
+        console.log('datos uf.serie: ', this.uf)
         commit('GET_UFS', this.uf)
       } catch (error) {
         // console.log(error)
@@ -40,7 +40,7 @@ export default new Vuex.Store({
       try {
         const {data: datos} = await axios.get('https://mindicador.cl/api/dolar')
         this.dolar = await datos.serie
-        // console.log('datos dolar.serie: ', this.dolar)
+        console.log('datos dolar.serie: ', this.dolar)
         commit('GET_DOLAR', this.dolar)
       } catch (error) {
         // console.log(error)
@@ -50,7 +50,7 @@ export default new Vuex.Store({
       try {
         const {data: datos} = await axios.get('https://mindicador.cl/api/bitcoin')
         this.bitcoin = await datos.serie
-        // console.log('datos bitcoin.serie: ', this.bitcoin)
+        console.log('datos bitcoin.serie: ', this.bitcoin)
         commit('GET_BITCOIN', this.bitcoin)
       } catch (error) {
         // console.log(error)

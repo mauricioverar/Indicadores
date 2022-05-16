@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- usar imagen abajo zindex -->
-    
+
     <div v-if="loder">
       <div class="text-center">
         <!-- <v-icon
@@ -10,7 +10,7 @@
     >
       mdi-currency-usd 
     </v-icon> -->
-    <span><b> UF </b></span>
+        <span><b> UF </b></span>
         <v-progress-circular
           indeterminate
           color="primary"
@@ -41,7 +41,6 @@ export default {
 
   created() {
     //this.loder = true
-
     //this.get_Datos()
     // console.log('created')
   },
@@ -58,7 +57,21 @@ export default {
 
   methods: {
     grafico() {
-      let loder = true
+      const months = [
+        'JAN',
+        'FEB',
+        'MAR',
+        'APR',
+        'MAY',
+        'JUN',
+        'JUL',
+        'AUG',
+        'SEP',
+        'OCT',
+        'NOV',
+        'DEC'
+      ]
+      //let loder = true
       setTimeout(() => {
         var dataPoints = []
         let chart = new CanvasJS.Chart('chartContainer', {
@@ -67,6 +80,12 @@ export default {
           title: {
             text: 'UF'
           },
+          // axisX: {
+          //   labelFormatter: function (e) {
+          //     return CanvasJS.formatDate(e.value, 'DD MMM')
+          //   },
+          //   labelAngle: -20
+          // },
           data: [
             {
               type: 'spline',
@@ -79,44 +98,20 @@ export default {
             x: new Date(this.ufs[i].fecha),
             y: this.ufs[i].valor
           })
+          console.log(
+            this.ufs[i].fecha,
+            dataPoints[i].x.getDate(),
+            '-',
+            months[dataPoints[i].x.getMonth()],
+            '-',
+            dataPoints[i].x.getFullYear()
+          )
         }
         this.loder = false
 
         chart.render()
-      }, 1000)
+      }, 0)
     }
-    // async get_Datos() {
-    //   try {
-    //     const { data: datos } = await axios.get(
-    //       'https://mindicador.cl/api/uf'
-    //     )
-    //     this.uf = await datos.serie
-
-    //     var dataPoints = []
-    //     let chart = new CanvasJS.Chart('chartContainer', {
-    //       theme: 'light2',
-    //       animationEnabled: false,
-    //       title: {
-    //         text: 'UF'
-    //       },
-    //       data: [
-    //         {
-    //           type: 'spline',
-    //           dataPoints: dataPoints
-    //         }
-    //       ]
-    //     })
-    //     for (var i = 0; i < this.uf.length; i++) {
-    //       dataPoints.push({
-    //         x: new Date(this.uf[i].fecha),
-    //         y: this.uf[i].valor
-    //       })
-    //     }
-    //     chart.render()
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
   }
 }
 </script>

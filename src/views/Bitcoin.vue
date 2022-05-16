@@ -73,7 +73,7 @@ export default {
 
   methods: {
     grafico() {
-      let loder = true
+      //let loder = true
       setTimeout(() => {
       var dataPoints = []
       let chart = new CanvasJS.Chart('chartContainer', {
@@ -98,7 +98,7 @@ export default {
       this.loder = false
 
         chart.render()
-      }, 1000)
+      }, 0)
     }
   }
 }
